@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	
+    <meta charset="utf-8">
+    <title>ctc安全环保</title>
+    <link rel="icon" type="/static/news/image/png" href="/static/news/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Bootstrap -->
+    <link href="/static/news/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/news/css/style.css" rel="stylesheet" media="screen">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/bootstrap/respond.min.js"></script>
+      <script src="js/bootstrap/html5shiv.js"></script>
+    <![endif]-->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?f3839a77c50a29da593e84e897b53703";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    </head>
+    <body class="page-blog" >
+        <div class="container" id="container">
+            
+            <div class="row top">
+                <div class="col-lg-8 col-md-8 col-sm-7 col-left">
+                
+                    {% block maintitle %}{% endblock %}
+					
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-5 col-right">
+                    <nav>
+                        <ul class="list-inline" id="menu">
+                            <li>
+                                <a href="{% url 'main' %}">主页</a>
+                            </li>						
+                            <li>
+                                <a href="{% url 'wechat' %}">每日一学</a>
+                            </li>
+							
+							<li>
+                                <a href = "{% url 'videos' %}">视频集锦</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="row bottom">
+                <div class="col-lg-8 col-md-8 col-sm-7 col-left" style="overflow-y:auto">
+                    <section>
+                              {% block mainlist %}{% endblock %}
+                    </section>
+                
+                
+                
+                <a href = "http://www.miitbeian.gov.cn/"><p align = "center">京ICP备15030672号</p></a>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-5 col-right">
+                                      
+                    
+                    <section class="row" id="Grid">
+                        <!--work 1-->
+                        {% for item in operlist%}
+                        
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6 mix print">
+                            <div class="panel panel-default item">
+                                <div class="panel-heading">
+                                    <a href={{item.href}} target= '_blank'>
+                                    
+                                        <!--work image-->
+                                        <img class="img-responsive item-img"  src={{item.pic.url}} alt="Work 1">
+                                        
+                                    </a>
+                                </div>
+                                <div class="panel-body">
+                                
+                                    <!--work title-->
+                                    <a href={{item.href}} target= '_blank'><h4 class="item-title">{{ item.title}}</h4></a>
+                                    
+                                    <!--work category-->
+                                    
+                                    
+                                    <!--work short description-->
+                                    <p class="item-description">{{ item.detail}}</p>
+                                    <hr>
+                                    
+                                    <!--work tags-->
+                                    
+                                </div>
+                            </div>
+                        </div>
+						{% endfor %}
+                    
+                    </section>
+                    <a class="btn btn-block scroll-top visible-xs">
+                        <img src="/static/img/icon-chevron.png" alt="Scroll top">
+                    </a>
+                </div>				
+            
+            </div>                        
+        </div>  
+                
+        <script src="/static/news/js/jquery.js"></script>
+        
+        <!-- FASTCLICK -->
+        <script src="/static/news/js/plugins/fastclick/fastclick.js"></script>
+        <!-- SMOOTH SCROLL -->
+        <script src="/static/news/js/plugins/smooth-scroll/jquery.smooth-scroll.min.js"></script>
+        <!-- MIXITUP -->
+        <script src="/static/news/js/plugins/mixitup/jquery.mixitup.min.js"></script>
+        
+        <script src="/static/news/js/main.js"></script>
+        <script >
+            var curIndex=0;
+            //时间间隔 单位毫秒
+            var timeInterval=3000;
+            var picdata = {{picshowlist|safe }}
+            var piclength = 0
+            
+            for (var pic in picdata){
+                piclength++
+            }
+            /*document.getElementById("showpic").src = "/media/"+picdata[0]['fields']['pic'] 
+            /*var arr=new Array();
+            arr[0]="1.jpg";
+            arr[1]="2.jpg";
+            arr[2]="3.jpg";
+            arr[3]="4.jpg";
+            arr[4]="5.jpg";
+            arr[5]="6.jpg";
+            arr[6]="7.jpg";*/
+            setInterval(changeImg,timeInterval);
+            function changeImg()
+            {
+            var obj=document.getElementById("showpic");
+            if (curIndex==piclength-1)
+            {
+            curIndex=0;
+            }
+            else
+            {
+            curIndex+=1;
+            }
+            obj.src="/media/"+picdata[curIndex]['fields']['pic'];
+            }
+            </script>
+            
+
+    </body>
+</html>

@@ -1,0 +1,164 @@
+﻿{% extends 'base.html' %}
+
+{% block maintitle %}                
+<div class="name"><a >ctc安全环保视频</a></div>
+ {% endblock %}
+	   
+
+
+{% block mainlist %}  
+
+	   <style type="text/css">
+
+  table {
+    border: 0px solid #ccc;
+    width: 100%;
+    margin:0;
+    padding:0;
+    align:center;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0 auto;
+  }
+
+  table tr {
+    border: 0px solid #ddd;
+    padding: 5px;
+  }
+
+  table th, table td {
+    padding: 10px;
+    
+  }
+     table td{
+   border-bottom:1px solid #ccc
+   }
+  table th {
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  table video{
+  height:250px;
+  width:400px;
+  }
+  table p{
+  text-indent:2em;
+  }
+
+  @media screen and (max-width: 600px) {
+
+    table {
+      border: 0;
+      width: 100%;
+    }
+
+    table thead {
+      display: none;
+    }
+
+    table tr {
+      margin-bottom: 5px;
+      display: block;
+      border-bottom: 0px solid #ddd;
+    }
+
+    table td {
+      display: block;
+      text-align: left;
+      font-size: 13px;
+      border-bottom: 1px dotted #ccc;
+    }
+
+    table td:last-child {
+      border-bottom: 0;
+    }
+
+    table td:before {
+      content: attr(data-label);
+      float: left;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    table video{
+      height:200px;
+      width:100%;
+    }
+    table p{
+    display:none
+    }    
+  }
+
+.note{max-width: 95%; margin: 0 auto;}
+
+    </style>
+    
+                    
+                       
+                            
+                            <!--article image-->
+                            
+                            <div align = "center">
+                            <!--article title-->
+                            <h1>安全视频集锦</h1>
+                            <p>最全的安全视频集锦，有案例、动漫以及微电影！</p>
+                            
+                            <!--article date
+                            <p class="article-date">
+							   <script language=Javascript> 
+                                  var now=new Date() 
+                                  document.write(1900+now.getYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds()) 
+                               </script>
+							              </p>-->               
+                            </div>
+                            
+                            <!--article content-->
+							    <table >
+                                <tbody>
+							    
+							    {% for item in list%}
+							    
+							    
+                                    <tr >
+                    <td><h4>{{ item.videoname}}</h4>
+                      
+                                          <p align = "left">{{ item.info}}</p>
+                                          <p align = "right" >--<span id ="newsauthor">{{ item.author}}</span></p>
+                                        
+                                      </td>
+                                      <!--<td><iframe id = "movie" height=280 width=100% src={{ item.videohref}} frameborder=0 allowfullscreen = "true"></iframe></td>-->
+                                      <td><video src ={{item.video.url}} controls="controls" poster = {{item.poster.url}}></video></td>
+                                      
+                                    </tr>
+								
+                                
+								{% endfor %}
+								
+						        </tbody>
+							    </table>
+						
+							<!--{% for item in list%}
+							    <div  align = "center">
+                                 <p>{{ item.videoname}}</p>
+								 <iframe height=200 width=100% src={{ item.videohref}} frameborder=0 allowfullscreen = "true"></iframe>
+								 <HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#987cb9 SIZE=3>
+							     </div>				
+							    
+                            {% endfor %}-->
+							
+                            <div style="clear:both" align = "center" >
+                               <span class="step-links">
+							      {% if list.has_previous %}
+							      <a href="?page={{ list.previous_page_number }}">上一页</a>
+                                  {% endif %}
+                                  <span class="current">
+                                      Page {{ list.number }} of {{ list.paginator.num_pages }}.
+                                  </span>
+                                  {% if list.has_next %}
+                                  <a href="?page={{ list.next_page_number }}">下一页</a>
+                                  {% endif %}
+                               </span>
+	                        </div>    
+                        
+    {% endblock %}                 
+                

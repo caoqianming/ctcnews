@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block maintitle %}                
+<div class="name"><a >ctc安全环保主页</a></div>
+ {% endblock %}   
+
+ {% block mainlist %} 
+
+								    
+                                    <!--article image-->
+
+                                    
+                                    <img src={{dpic.pic.url}}  id="showpic">
+                                    
+
+
+                                    <!--article title-->
+                                    <div align = "center">
+                                    <h1 style = "font-family: Arial, Microsoft YaHei;">ctc安环院最新资讯</h1>
+                                    <p>点击标题即可详细阅读</p>
+                                    </div>
+                            
+                                    
+                                    <!--<p class="article-date">
+									   <script language=Javascript> 
+                                       var now=new Date() 
+                                       document.write(1900+now.getYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds()) 
+                                       </script></p>-->               
+                                    
+                                    
+                            
+                                    <!--article content-->
+                                    <!--<ul class="article-ul">-->
+									<table >
+									
+							        {% for item in list %}
+							        
+							            <tr >
+                                                                                
+							            <td >
+                                        <h4><a href = {{ item.href}} target= '_blank' id ="newstitle">{{ item.title}}</a></h4>
+                                        <p>{{ item.pubtime|date:"Y-m-d"}}<span style = "font-style:italic;color:#23527c;">首发</span></p>
+                                        <p><span id ="newsauthor">{{ item.dep}}</span>
+							            </td>
+                                        <td  id ="newsimg">
+							             <img  src = {{item.pic.url}} ></img></td>
+
+							            </tr>
+							        							
+							            
+							        
+                                    {% endfor %}
+									</table>
+									
+									
+                            
+                            
+                     
+ {% endblock %}                   
